@@ -12,12 +12,7 @@ export function Pillars({ copy }: { copy: Dictionary["pillars"] }) {
     <Section theme="deep" aria-labelledby="pillars-title" className="noise">
       <div aria-hidden className="grid-texture absolute inset-0 opacity-50" />
       <div className="relative">
-        <SectionHeader
-          eyebrow={copy.eyebrow}
-          title={copy.title}
-          lead={copy.lead}
-          id="pillars-title"
-        />
+        <SectionHeader title={copy.title} lead={copy.lead} id="pillars-title" />
         <DrawLine className="mt-16" />
         <Stagger as="ol" className="grid gap-12 pt-12 md:grid-cols-3 md:gap-8">
           {copy.items.map((item) => (

@@ -64,7 +64,8 @@ public/llms.txt                 curated summary for AI assistants (GEO)
 The brochure lists the commercial channel as pending, so these are placeholders:
 
 * `src/lib/site.ts`: email, phone, social URLs, Twitter handle.
-* `clients.names` (marquee), `about.team`, `about.footprint`, `metrics.items` in both dictionaries.
+* Client wordmarks in `public/clients/*.svg` (listed in `src/content/clients.ts`) are invented placeholders; swap in real white/monochrome logos of the same height.
+* `about.team`, `about.footprint`, `metrics.items` in both dictionaries.
 * `insights.posts` are sample articles.
 * Contact form (`app/[locale]/contact/actions.ts`) validates and logs only; wire it to a CRM/email provider.
 * Newsletter form (`components/layout/newsletter.tsx`) is UI only.

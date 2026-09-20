@@ -8,8 +8,13 @@ export function Eyebrow({
   ...rest
 }: { as?: "p" | "span" | "div"; children: ReactNode } & ComponentProps<"p">) {
   return (
-    <Tag className={cn("eyebrow flex items-center gap-3", className)} {...rest}>
-      <span aria-hidden className="inline-block h-px w-6 bg-accent" />
+    <Tag
+      className={cn(
+        "serif text-[1.15rem] leading-none text-accent sm:text-[1.3rem]",
+        className,
+      )}
+      {...rest}
+    >
       {children}
     </Tag>
   );

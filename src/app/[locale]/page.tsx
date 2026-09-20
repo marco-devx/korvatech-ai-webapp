@@ -75,7 +75,7 @@ export default async function HomePage({ params }: { params: Params }) {
         contactHref={localePath(locale, "contact")}
         methodHref={localePath(locale, "method")}
       />
-      <Clients copy={dict.clients} />
+      <Clients copy={dict.clients} capabilities={dict.hero.chips} />
       <Brief copy={dict.brief} />
       <Pillars copy={dict.pillars} />
       <Metrics copy={dict.metrics} />

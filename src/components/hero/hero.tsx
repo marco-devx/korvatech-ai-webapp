@@ -10,7 +10,7 @@ import {
 import dynamic from "next/dynamic";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Chip, Eyebrow } from "@/components/ui/primitives";
+import { Eyebrow } from "@/components/ui/primitives";
 import { SplitReveal } from "@/components/ui/reveal";
 import type { Dictionary } from "@/i18n/dictionaries/en";
 import { HeroFallback } from "./hero-fallback";
@@ -129,26 +129,19 @@ export function Hero({ copy, contactHref, methodHref }: Props) {
           </motion.div>
         </div>
 
-        <motion.div
+        <motion.p
           initial={reduce ? false : { opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1.1 }}
-          className="mt-14 flex flex-col gap-6 border-t border-line pt-6 sm:flex-row sm:items-end sm:justify-between"
+          className="mt-12 max-w-xl text-fg-subtle"
         >
-          <ul className="flex flex-wrap gap-2" aria-label="Capabilities">
-            {copy.chips.map((c) => (
-              <li key={c}>
-                <Chip>{c}</Chip>
-              </li>
-            ))}
-          </ul>
-          <div className="sm:text-right">
-            <p className="serif text-2xl text-accent sm:text-3xl">
-              {copy.kicker}
-            </p>
-            <p className="mt-1 text-sm text-fg-subtle">{copy.kickerSub}</p>
-          </div>
-        </motion.div>
+          <span className="serif text-xl text-accent sm:text-2xl">
+            {copy.kicker}
+          </span>
+          <span className="mt-1 block text-sm sm:mt-0 sm:ml-3 sm:inline">
+            {copy.kickerSub}
+          </span>
+        </motion.p>
       </motion.div>
 
       <motion.div

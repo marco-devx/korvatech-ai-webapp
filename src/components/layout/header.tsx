@@ -140,10 +140,20 @@ export function Header({
               hrefLang={other}
               lang={other}
               aria-label={switchAria}
-              className="inline-flex h-10 items-center gap-2 rounded-full border border-line px-3.5 font-mono text-[0.7rem] uppercase tracking-[0.16em] text-fg-muted transition-colors hover:border-accent hover:text-accent"
+              title={switchLabel}
+              className="group/lang inline-flex h-10 items-center gap-1.5 px-2 font-mono text-[0.7rem] uppercase tracking-[0.18em]"
             >
-              <span className="text-accent">{other.toUpperCase()}</span>
-              <span className="hidden sm:inline">{switchLabel}</span>
+              <span className="text-fg">{locale.toUpperCase()}</span>
+              <span aria-hidden className="text-fg-subtle">
+                /
+              </span>
+              <span className="relative text-fg-subtle transition-colors group-hover/lang:text-accent">
+                {other.toUpperCase()}
+                <span
+                  aria-hidden
+                  className="absolute inset-x-0 -bottom-0.5 h-px origin-left scale-x-0 bg-accent transition-transform duration-500 group-hover/lang:scale-x-100"
+                />
+              </span>
             </Link>
             <span className="hidden sm:inline-flex">
               <Button
