@@ -1,26 +1,281 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* ---------------------------------------------------------------------------
+   Korvatech.ai design tokens
+   Palette sampled from the "Propuesta 04" brochure:
+   forest #152726 · card #203631 · line #2c443b · cream #f3f0e8 · copper #d4aa80
+--------------------------------------------------------------------------- */
+@theme {
+  --color-forest-950: #0d1a19;
+  --color-forest-900: #152726;
+  --color-forest-800: #1b302d;
+  --color-forest-700: #203631;
+  --color-forest-600: #2c443b;
+  --color-forest-500: #3b4d46;
+  --color-sage-500: #54635d;
+  --color-sage-400: #7f8f88;
+  --color-sage-300: #a8b5a2;
+  --color-sage-200: #c4cbbd;
+  --color-cream-50: #f9f7f2;
+  --color-cream-100: #f3f0e8;
+  --color-cream-200: #e9e5da;
+  --color-cream-300: #d5d8cc;
+  --color-copper-300: #e8cfae;
+  --color-copper-400: #d4aa80;
+  --color-copper-500: #b98c62;
+  --color-copper-600: #8f6a48;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-instrument-serif), Georgia, "Times New Roman", serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+
+  --animate-marquee: marquee 40s linear infinite;
+  --animate-pulse-soft: pulse-soft 3s ease-in-out infinite;
+  --animate-spin-slow: spin 24s linear infinite;
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  @keyframes pulse-soft {
+    0%,
+    100% {
+      opacity: 0.55;
+    }
+    50% {
+      opacity: 1;
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Section themes. Every section declares data-theme so nested components can
+   rely on semantic tokens instead of hard-coded colors. */
+:root,
+[data-theme="dark"] {
+  --bg: var(--color-forest-900);
+  --bg-elevated: var(--color-forest-700);
+  --fg: var(--color-cream-100);
+  --fg-muted: var(--color-sage-300);
+  --fg-subtle: var(--color-sage-400);
+  --line: var(--color-forest-600);
+  --line-strong: var(--color-forest-500);
+  --accent: var(--color-copper-400);
+  --accent-soft: color-mix(in oklab, var(--color-copper-400) 18%, transparent);
+  color-scheme: dark;
+}
+
+[data-theme="light"] {
+  --bg: var(--color-cream-100);
+  --bg-elevated: var(--color-cream-50);
+  --fg: var(--color-forest-900);
+  --fg-muted: var(--color-sage-500);
+  --fg-subtle: var(--color-sage-400);
+  --line: var(--color-cream-300);
+  --line-strong: var(--color-sage-300);
+  --accent: var(--color-copper-500);
+  --accent-soft: color-mix(in oklab, var(--color-copper-500) 16%, transparent);
+  color-scheme: light;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-elevated: var(--bg-elevated);
+  --color-fg: var(--fg);
+  --color-fg-muted: var(--fg-muted);
+  --color-fg-subtle: var(--fg-subtle);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    overflow-x: clip;
+  }
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+  .lenis.lenis-smooth {
+    /* biome-ignore lint/complexity/noImportantStyles: lenis requires it */
+    scroll-behavior: auto !important;
+  }
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+  body {
+    background: var(--color-forest-900);
+    color: var(--color-cream-100);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv11", "liga";
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: clip;
+  }
+  ::selection {
+    background: var(--color-copper-400);
+    color: var(--color-forest-900);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-copper-400);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    text-wrap: balance;
+    letter-spacing: -0.02em;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  em,
+  .serif {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: 0;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      /* biome-ignore lint/complexity/noImportantStyles: reduced-motion override */
+      animation-duration: 0.01ms !important;
+      /* biome-ignore lint/complexity/noImportantStyles: reduced-motion override */
+      animation-iteration-count: 1 !important;
+      /* biome-ignore lint/complexity/noImportantStyles: reduced-motion override */
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@utility container-x {
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+  max-width: 88rem;
+  @media (min-width: 640px) {
+    padding-inline: 2rem;
+  }
+  @media (min-width: 1024px) {
+    padding-inline: 3.5rem;
+  }
+}
+
+@utility eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+@utility display-1 {
+  font-size: clamp(2.75rem, 7.2vw, 6.75rem);
+  line-height: 0.96;
+  letter-spacing: -0.035em;
+  font-weight: 400;
+}
+@utility display-2 {
+  font-size: clamp(2.25rem, 4.6vw, 4.25rem);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  font-weight: 400;
+}
+@utility display-3 {
+  font-size: clamp(1.75rem, 3vw, 2.75rem);
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  font-weight: 400;
+}
+
+@utility hairline {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--line-strong) 12%,
+    var(--line-strong) 88%,
+    transparent
+  );
+}
+
+/* Diagonal seam between alternating sections. */
+@utility seam-top {
+  clip-path: polygon(0 0, 100% 3.5vw, 100% 100%, 0 100%);
+  margin-top: -3.5vw;
+  padding-top: calc(3.5vw + 1px);
+}
+
+/* Fine grid texture used as a background in dark sections. */
+@utility grid-texture {
+  background-image:
+    linear-gradient(
+      to right,
+      color-mix(in oklab, var(--line) 55%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in oklab, var(--line) 55%, transparent) 1px,
+      transparent 1px
+    );
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+}
+
+@utility text-gradient-copper {
+  background: linear-gradient(
+    120deg,
+    var(--color-copper-300),
+    var(--color-copper-400) 45%,
+    var(--color-copper-500)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility noise {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.045;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    mix-blend-mode: overlay;
+  }
+}
+
+/* Odometer digits */
+.odometer-col {
+  display: inline-block;
+  height: 1em;
+  overflow: hidden;
+  vertical-align: top;
+}
+.odometer-col > span {
+  display: block;
+  transition: transform 1.4s var(--ease-out-expo);
 }

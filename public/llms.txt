@@ -1,0 +1,41 @@
+# Korvatech.ai
+
+> Korvatech.ai is a software factory and AI solutions company. We analyze a business need and build the software that solves it: custom products, generative AI agents, predictive models, integrations between CRM, ERP and ecommerce platforms, and cloud infrastructure. We ship a useful first release within weeks and link our price to the value each delivery creates. Remote-first team working in English and Spanish for clients in Latin America, the United States and Spain.
+
+Slogan: "You pay for the value you receive." / "Pagas por el valor que recibes."
+
+## Key facts
+
+- Services: custom software, generative AI & agents (RAG, MCP), predictive AI & MLOps, integrations & automation, data & BI, cloud/DevOps/security, blockchain.
+- Method: 1-2 week diagnosis → useful first release → bi-weekly iterations → monthly results review. Steps: Agree, Deliver, Validate, Evolve.
+- Business model: value defined per delivery; delivery validated with the client; payment linked to validated value; terms agreed per stage.
+- Technologies: Salesforce, HubSpot, Dynamics 365, Zoho CRM, SAP, Odoo, Business Central, Shopify, WooCommerce, Adobe Commerce, VTEX, REST, GraphQL, Webhooks, MuleSoft, Kafka, n8n, Make, Zapier, Power Automate, Power Apps, AWS, Azure, Google Cloud, Serverless, OpenAI, Claude, Gemini, Llama, LangChain, RAG, MCP, React, Next.js, Node.js, .NET, Python, Flutter, React Native, PostgreSQL, Power BI, BigQuery, Snowflake, Databricks, dbt, PyTorch, scikit-learn, TimesFM, MLflow, Docker, Kubernetes, Terraform, GitHub Actions, OAuth 2.0, OIDC, Ethereum, Polygon, Solidity, Hyperledger Fabric.
+- Target outcomes (proposed pilots, agreed and measured per project): 5x engineering cadence in 3 months with AI-assisted delivery; 25% of at-risk students retained; 80% of an ecommerce order flow automated; AI customer care and recommendations; demand forecasting with TimesFM 2.5.
+- Contact: hello@korvatech.ai
+
+## Pages (English)
+
+- [Home](https://korvatech.ai/en): overview, brief, services, technologies, results, method, FAQ.
+- [Services](https://korvatech.ai/en/services): the six capabilities.
+- [Technologies](https://korvatech.ai/en/technologies): full stack by category.
+- [Results](https://korvatech.ai/en/work): proposed solutions and target outcomes.
+- [Method](https://korvatech.ai/en/method): how we work and the value-based business model.
+- [About](https://korvatech.ai/en/about): company, values, leadership.
+- [Insights](https://korvatech.ai/en/insights): practical notes on AI and delivery.
+- [Contact](https://korvatech.ai/en/contact)
+
+## Páginas (Español)
+
+- [Inicio](https://korvatech.ai/es)
+- [Servicios](https://korvatech.ai/es/servicios)
+- [Tecnologías](https://korvatech.ai/es/tecnologias)
+- [Resultados](https://korvatech.ai/es/casos)
+- [Método](https://korvatech.ai/es/metodo)
+- [Nosotros](https://korvatech.ai/es/nosotros)
+- [Ideas](https://korvatech.ai/es/ideas)
+- [Contacto](https://korvatech.ai/es/contacto)
+
+## Optional
+
+- [Full text for LLMs](https://korvatech.ai/llms-full.txt)
+- [Sitemap](https://korvatech.ai/sitemap.xml)
