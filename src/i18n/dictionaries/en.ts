@@ -837,14 +837,6 @@ export const en = {
       need: "What do you need to solve?",
       needPlaceholder:
         "For example: orders come from three channels and stock is reconciled by hand every night…",
-      budget: "Expected investment for a first stage",
-      budgetOptions: [
-        "To be defined together",
-        "Under US$15k",
-        "US$15k – US$50k",
-        "US$50k – US$150k",
-        "Over US$150k",
-      ],
       submit: "Send",
       sending: "Sending…",
       success: {

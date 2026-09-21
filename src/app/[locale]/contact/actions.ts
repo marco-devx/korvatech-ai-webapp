@@ -21,7 +21,6 @@ const schema = z.object({
   email: z.string().trim().min(1, "required").email("invalidEmail"),
   company: z.string().trim().min(1, "required"),
   need: z.string().trim().min(1, "required").min(20, "tooShort"),
-  budget: z.string().trim().optional(),
   locale: z.string().optional(),
   website: z.string().optional(), // honeypot
 });

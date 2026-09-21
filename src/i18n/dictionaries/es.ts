@@ -844,14 +844,6 @@ export const es: Dictionary = {
       need: "¿Qué necesitas resolver?",
       needPlaceholder:
         "Por ejemplo: los pedidos llegan por tres canales y el stock se concilia a mano todas las noches…",
-      budget: "Inversión esperada para una primera etapa",
-      budgetOptions: [
-        "A definir juntos",
-        "Menos de US$15k",
-        "US$15k – US$50k",
-        "US$50k – US$150k",
-        "Más de US$150k",
-      ],
       submit: "Enviar",
       sending: "Enviando…",
       success: {

@@ -88,18 +88,6 @@ export function ContactForm({
         placeholder={copy.needPlaceholder}
         error={msg(errors.need)}
       />
-      <div>
-        <label htmlFor="budget" className="eyebrow mb-2 block">
-          {copy.budget}
-        </label>
-        <select id="budget" name="budget" className={inputCls}>
-          {copy.budgetOptions.map((o) => (
-            <option key={o} value={o}>
-              {o}
-            </option>
-          ))}
-        </select>
-      </div>
       <div className="flex flex-col gap-4 pt-2 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-xs text-fg-subtle">{copy.privacy}</p>
         <button
