@@ -55,6 +55,20 @@ export function Marquee({
     x.set(next);
   });
 
+  // Reduced motion: no clipping, no movement — a calm, centered row instead of a frozen marquee.
+  if (reduce) {
+    return (
+      <div
+        className={cn("relative", className)}
+        style={{ maskImage: "none", WebkitMaskImage: "none" }}
+      >
+        <div className="container-x flex flex-wrap items-center justify-center gap-y-6">
+          {children}
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className={cn("relative overflow-hidden", className)}>
       <motion.div
