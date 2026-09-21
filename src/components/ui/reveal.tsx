@@ -44,7 +44,7 @@ export function SplitReveal({
           className="inline-block overflow-hidden pb-[0.08em] align-bottom"
         >
           <motion.span
-            className="inline-block will-change-transform"
+            className="inline-block"
             variants={{
               hidden: { y: "110%", rotate: 3, opacity: 0 },
               visible: {

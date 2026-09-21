@@ -4,6 +4,7 @@ import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import type { MotionValue } from "motion/react";
 import { useMemo, useRef } from "react";
 import * as THREE from "three";
+import { HeroFallback } from "./hero-fallback";
 
 /**
  * "Convergence" — the brochure's cover motif in 3D: a perspective corridor of
@@ -254,7 +255,13 @@ export default function HeroScene({
     <Canvas
       dpr={[1, 1.6]}
       camera={{ fov: 54, near: 0.1, far: 120, position: [0, 0, 8.5] }}
-      gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
+      gl={{
+        antialias: true,
+        alpha: true,
+        powerPreference: "high-performance",
+        failIfMajorPerformanceCaveat: false,
+      }}
+      fallback={<HeroFallback className="h-full w-full" />}
       frameloop={active ? "always" : "never"}
       style={{ position: "absolute", inset: 0, background: "transparent" }}
       aria-hidden

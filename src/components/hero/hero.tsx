@@ -8,7 +8,7 @@ import {
   useTransform,
 } from "motion/react";
 import dynamic from "next/dynamic";
-import { useEffect, useRef, useState } from "react";
+import { Component, type ReactNode, useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Eyebrow } from "@/components/ui/primitives";
 import { SplitReveal } from "@/components/ui/reveal";
@@ -16,6 +16,20 @@ import type { Dictionary } from "@/i18n/dictionaries/en";
 import { HeroFallback } from "./hero-fallback";
 
 const HeroScene = dynamic(() => import("./hero-scene"), { ssr: false });
+
+/** If WebGL or the scene throws (older iOS, blocked GPU), fall back to the static SVG. */
+class SceneBoundary extends Component<
+  { fallback: ReactNode; children: ReactNode },
+  { failed: boolean }
+> {
+  state = { failed: false };
+  static getDerivedStateFromError() {
+    return { failed: true };
+  }
+  render() {
+    return this.state.failed ? this.props.fallback : this.props.children;
+  }
+}
 
 type Props = {
   copy: Dictionary["hero"];
@@ -29,6 +43,13 @@ export function Hero({ copy, contactHref, methodHref }: Props) {
   const reduce = useReducedMotion();
   const inView = useInView(ref, { margin: "0px 0px -10% 0px" });
   const [ready, setReady] = useState(false);
+  // Keep rendering until the observer has reported the hero in view at least once
+  // (Safari can delay the first IntersectionObserver callback).
+  const [seen, setSeen] = useState(false);
+  useEffect(() => {
+    if (inView) setSeen(true);
+  }, [inView]);
+  const active = inView || !seen;
 
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -70,11 +91,13 @@ export function Hero({ copy, contactHref, methodHref }: Props) {
         aria-label={copy.canvasLabel}
       >
         {ready && !reduce ? (
-          <HeroScene
-            pointer={pointer}
-            progress={scrollYProgress}
-            active={inView}
-          />
+          <SceneBoundary fallback={<HeroFallback className="h-full w-full" />}>
+            <HeroScene
+              pointer={pointer}
+              progress={scrollYProgress}
+              active={active}
+            />
+          </SceneBoundary>
         ) : (
           <HeroFallback className="h-full w-full" />
         )}
@@ -96,15 +119,13 @@ export function Hero({ copy, contactHref, methodHref }: Props) {
           >
             <Eyebrow>{copy.eyebrow}</Eyebrow>
           </motion.div>
-          <h1 id="hero-title" className="display-1 mt-8 text-fg">
-            <SplitReveal text={copy.titleA} as="span" delay={0.2} />
-            <br />
-            <SplitReveal
-              text={copy.titleB}
-              as="span"
-              className="serif text-accent"
-              delay={0.45}
-            />
+          <h1 id="hero-title" className="display-1 mt-8 text-fg text-wrap">
+            <span className="block">
+              <SplitReveal text={copy.titleA} as="span" delay={0.2} />
+            </span>
+            <span className="serif block text-accent">
+              <SplitReveal text={copy.titleB} as="span" delay={0.45} />
+            </span>
           </h1>
           <motion.p
             initial={reduce ? false : { opacity: 0, y: 18 }}
